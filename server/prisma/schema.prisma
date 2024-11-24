@@ -1,0 +1,222 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model ReviewReplies {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  reviewId  String   @db.ObjectId
+  review    Reviews  @relation(fields: [reviewId], references: [id])
+  userId    String   @db.ObjectId
+  user      User     @relation(fields: [userId], references: [id])
+  reply     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Reviews {
+  id        String          @id @default(auto()) @map("_id") @db.ObjectId
+  userId    String          @db.ObjectId
+  user      User            @relation(fields: [userId], references: [id])
+  courseId  String          @db.ObjectId
+  course    Course          @relation(fields: [courseId], references: [id])
+  rating    Float           @default(0)
+  comment   String
+  replies   ReviewReplies[]
+  createdAt DateTime        @default(now())
+  updatedAt DateTime        @updatedAt
+}
+
+model CourseBenefits {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  title     String
+  course    Course   @relation(fields: [courseId], references: [id])
+  courseId  String   @db.ObjectId
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model CoursePrerequisites {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  title     String
+  course    Course   @relation(fields: [courseId], references: [id])
+  courseId  String   @db.ObjectId
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model CourseLinks {
+  id           String     @id @default(auto()) @map("_id") @db.ObjectId
+  contentId    String     @db.ObjectId
+  course       CourseData @relation(fields: [contentId], references: [id])
+  title        String
+  url          String
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+  courseDataId String?    @db.ObjectId
+}
+
+model CourseQuestionAnswers {
+  id         String          @id @default(auto()) @map("_id") @db.ObjectId
+  questionId String          @db.ObjectId
+  question   CourseQuestions @relation(fields: [questionId], references: [id])
+  answer     String
+  userId     String          @db.ObjectId
+  user       User            @relation(fields: [userId], references: [id])
+  createdAt  DateTime        @default(now())
+  updatedAt  DateTime        @updatedAt
+}
+
+model CourseQuestions {
+  id           String                  @id @default(auto()) @map("_id") @db.ObjectId
+  userId       String                  @db.ObjectId
+  user         User                    @relation(fields: [userId], references: [id])
+  contentId    String                  @db.ObjectId
+  content      CourseData              @relation(fields: [contentId], references: [id])
+  question     String
+  image        String?
+  answers      CourseQuestionAnswers[]
+  createdAt    DateTime                @default(now())
+  updatedAt    DateTime                @updatedAt
+  Notification Notification[]
+}
+
+model CourseData {
+  id                   String                 @id @default(auto()) @map("_id") @db.ObjectId
+  title                String
+  videoUrl             String
+  videoSection         String
+  description          String
+  videoLength          String
+  videoPlayer          String?
+  links                CourseLinks[]
+  questions            CourseQuestions[]
+  courseId             String                 @db.ObjectId
+  Course               Course                 @relation(fields: [courseId], references: [id])
+  VideoCompleteHistory VideoCompleteHistory[]
+}
+
+model Course {
+  id               String                @id @default(auto()) @map("_id") @db.ObjectId
+  name             String
+  description      String
+  categories       String?
+  price            Float
+  estimatedPrice   Float?
+  thumbnail        String
+  tags             String
+  level            String
+  demoUrl          String
+  slug             String                @unique
+  lessons          Float                 @default(0)
+  payment_id       String?
+  benefits         CourseBenefits[]
+  prerequisites    CoursePrerequisites[]
+  courseData       CourseData[]
+  reviews          Reviews[]
+  orders           Orders[]
+  iosProductId     String?
+  androidProductId String?
+  visibility       Boolean?
+  ratings          Float                 @default(0)
+  purchased        Float                 @default(0)
+  createdAt        DateTime              @default(now())
+  updatedAt        DateTime              @updatedAt
+}
+
+enum Role {
+  User
+  Admin
+  Modaretor
+}
+
+model Orders {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId       String   @db.ObjectId
+  user         User     @relation(fields: [userId], references: [id])
+  payment_info String?
+  courseId     String   @db.ObjectId
+  course       Course   @relation(fields: [courseId], references: [id])
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Notification {
+  id            String           @id @default(auto()) @map("_id") @db.ObjectId
+  title         String
+  message       String
+  status        String           @default("Unread")
+  creatorId     String           @db.ObjectId
+  receiverId    String?          @map("receiverId")
+  redirect_link String?
+  questionId    String?          @db.ObjectId
+  question      CourseQuestions? @relation(fields: [questionId], references: [id])
+  ticketId      String?          @db.ObjectId
+  ticket        Tickets?         @relation(fields: [ticketId], references: [id])
+  user          User             @relation(fields: [creatorId], references: [id])
+  createdAt     DateTime         @default(now())
+  updatedAt     DateTime         @updatedAt
+}
+
+model User {
+  id                   String                  @id @default(auto()) @map("_id") @db.ObjectId
+  name                 String
+  email                String                  @unique
+  password             String?
+  phone_number         Float?
+  avatar               String?
+  stripeCustomerId     String?
+  githubUserName       String?
+  pushToken            String?
+  role                 Role                    @default(User)
+  verified             Boolean                 @default(false)
+  reviews              Reviews[]
+  reviewsReplies       ReviewReplies[]
+  questions            CourseQuestions[]
+  questionAnswers      CourseQuestionAnswers[]
+  orders               Orders[]
+  Tickets              Tickets[]
+  TicketReply          TicketReply[]
+  createdAt            DateTime                @default(now())
+  updatedAt            DateTime                @updatedAt
+  Notification         Notification[]
+  VideoCompleteHistory VideoCompleteHistory[]
+}
+
+model TicketReply {
+  id        String    @id @default(auto()) @map("_id") @db.ObjectId
+  ticketId  String    @db.ObjectId
+  tickets   Tickets   @relation(fields: [ticketId], references: [id])
+  reply     String
+  replyId   String    @db.ObjectId
+  user      User      @relation(fields: [replyId], references: [id])
+  createdAt DateTime? @default(now())
+  updatedAt DateTime? @updatedAt
+}
+
+model Tickets {
+  id           String         @id @default(auto()) @map("_id") @db.ObjectId
+  creatorId    String         @db.ObjectId
+  user         User           @relation(fields: [creatorId], references: [id])
+  ticketTitle  String
+  details      String
+  reply        TicketReply[]
+  status       String         @default("Pending")
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+  Notification Notification[]
+}
+
+model VideoCompleteHistory {
+  id        String     @id @default(auto()) @map("_id") @db.ObjectId
+  userId    String     @db.ObjectId
+  user      User       @relation(fields: [userId], references: [id])
+  contentId String     @db.ObjectId
+  content   CourseData @relation(fields: [contentId], references: [id])
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+}
