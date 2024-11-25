@@ -1,6 +1,4 @@
 import React from "react";
-import { SplashScreen, Stack } from "expo-router";
-import { ThemeProvider, useTheme } from "@/context/theme.context";
 import {
   Poppins_600SemiBold,
   Poppins_300Light,
@@ -11,6 +9,8 @@ import {
 } from "@expo-google-fonts/poppins";
 import { ClerkProvider, ClerkLoaded } from "@clerk/clerk-expo";
 import * as SecureStore from 'expo-secure-store'
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+import ClerkApp from "./clerkapp";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 // SplashScreen.preventAutoHideAsync();
@@ -60,13 +60,9 @@ export default function _layout() {
   return (
     <ClerkProvider publishableKey={publishableKey} tokenCache={tokenCache}>
       <ClerkLoaded>
-        <ThemeProvider>
-          <Stack screenOptions={{ headerShown: false }}>
-            <Stack.Screen name="index" />
-            <Stack.Screen name="(routes)/onboarding/index" />
-            <Stack.Screen name="(routes)/notification/index" />
-          </Stack>
-        </ThemeProvider>
+        <GestureHandlerRootView>
+        <ClerkApp/>
+        </GestureHandlerRootView>
       </ClerkLoaded>
     </ClerkProvider>
   );
