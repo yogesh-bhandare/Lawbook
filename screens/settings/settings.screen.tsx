@@ -134,7 +134,7 @@ export default function SettingsScreen() {
           <Text
             style={[styles.normalText, { color: theme.dark ? "#fff" : "#000" }]}
           >
-            Course Updates
+            Judgment Updates
           </Text>
           <Switch
             value={courseUpdates}

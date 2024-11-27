@@ -46,7 +46,7 @@ export default function HomeScreen() {
                 Popular
               </Text>
               <GradiantText
-                text="Courses"
+                text="Cases"
                 styles={{
                   fontSize: fontSizes.FONT35,
                   fontFamily: "Poppins_500Medium",
@@ -71,7 +71,7 @@ export default function HomeScreen() {
                   color: theme.dark ? "#fff" : "#000",
                 }}
               >
-                our comprehensive project based courses
+                our comprehensive practice based learning
               </Text>
             </View>
           </View>

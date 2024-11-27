@@ -20,7 +20,7 @@ export default function SkeltonLoader() {
       {/* <Spacer /> */}
       <Skeleton
         width={windowWidth(440)}
-        height={windowHeight(160)}
+        height={windowHeight(60)}
         colorMode={theme.dark ? "dark" : "light"}
       />
       <Spacer />

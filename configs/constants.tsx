@@ -10,38 +10,6 @@ import Three from "@/assets/images/onboarding/3.png";
 
 export const onBoardingSlides: onBoardingSlidesTypes[] = [
   {
-    color: "#40E0D0",
-    title: "Explore",
-    image: (
-      <Image
-        source={One}
-        style={{
-          width: IsIPAD ? verticalScale(285) : verticalScale(320),
-          height: IsIPAD ? verticalScale(345) : verticalScale(330),
-        }}
-      />
-    ),
-    secondTitle: "Our Community",
-    subTitle:
-      "Find the perfect course to enhance your career prospects and skill set",
-  },
-  {
-    color: "#A7F893",
-    title: "Set Your",
-    image: (
-      <Image
-        source={Two}
-        style={{
-          width: IsIPAD ? scale(285) : scale(320),
-          height: IsIPAD ? verticalScale(345) : verticalScale(330),
-        }}
-      />
-    ),
-    secondTitle: "Own Goal",
-    subTitle:
-      "Personalize your study plan with flexible timelines that suit you best",
-  },
-  {
     color: "#FFC0CB",
     image: (
       <Image
@@ -52,10 +20,42 @@ export const onBoardingSlides: onBoardingSlidesTypes[] = [
         }}
       />
     ),
-    title: "Complete full",
-    secondTitle: "Course",
+    title: "Step Into",
+    secondTitle: "the Courtroom",
     subTitle:
-      "Achieve certification by completing courses with dedicated effort",
+      "Practice trials anytime, anywhere with our virtual moot court",
+  },
+  {
+    color: "#40E0D0",
+    title: "Master",
+    image: (
+      <Image
+        source={One}
+        style={{
+          width: IsIPAD ? verticalScale(285) : verticalScale(320),
+          height: IsIPAD ? verticalScale(345) : verticalScale(330),
+        }}
+      />
+    ),
+    secondTitle: "Legal Knowledge",
+    subTitle:
+      "Explore a comprehensive library of cases, laws and judgments, simplified with AI",
+  },
+  {
+    color: "#A7F893",
+    title: "Track",
+    image: (
+      <Image
+        source={Two}
+        style={{
+          width: IsIPAD ? scale(285) : scale(320),
+          height: IsIPAD ? verticalScale(345) : verticalScale(330),
+        }}
+      />
+    ),
+    secondTitle: "Your Goals",
+    subTitle:
+    "Set milestones, earn badges, and monitor your progress as you grow.",
   },
 ];
 
@@ -157,7 +157,7 @@ export const NotificationsData = [
 export const FAQData = [
   {
     id: 1,
-    question: "Will I receive a certificate for each course?",
+    question: "Will I receive a certificate for each contest?",
     answer:
       "Yes — each student who completes any course will receive a certificate of completion to acknowledge their proficiency. We encourage students to include these on their LinkedIn profiles and in their job applications!",
   },

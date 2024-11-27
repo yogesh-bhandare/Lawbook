@@ -11,6 +11,8 @@ import { ClerkProvider, ClerkLoaded } from "@clerk/clerk-expo";
 import * as SecureStore from 'expo-secure-store'
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import ClerkApp from "./clerkapp";
+import { SplashScreen, Stack } from "expo-router";
+import { ThemeProvider } from "@/context/theme.context";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 // SplashScreen.preventAutoHideAsync();
@@ -61,6 +63,14 @@ export default function _layout() {
     <ClerkProvider publishableKey={publishableKey} tokenCache={tokenCache}>
       <ClerkLoaded>
         <GestureHandlerRootView>
+        {/* <ThemeProvider>
+        <Stack screenOptions={{ headerShown: false }}>
+          <Stack.Screen name="index" />
+          <Stack.Screen name="(routes)/onboarding/index" />
+          <Stack.Screen name="(routes)/notification/index" />
+          <Stack.Screen name="(routes)/room/[id]" />
+        </Stack>
+      </ThemeProvider> */}
         <ClerkApp/>
         </GestureHandlerRootView>
       </ClerkLoaded>

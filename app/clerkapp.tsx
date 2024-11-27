@@ -10,6 +10,7 @@ const apiKey = process.env.EXPO_PUBLIC_STREAM_ACCESS_KEY!;
 
 function ClerkApp() {
   const { user: clerkUser } = useUser();
+  
 
   const user: User = {
     id: clerkUser?.id || "",
@@ -37,6 +38,19 @@ function ClerkApp() {
     user,
     tokenProvider,
   });
+
+  if (!client) {
+    return (
+      <ThemeProvider>
+      <Stack screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="index" />
+        <Stack.Screen name="(routes)/onboarding/index" />
+        <Stack.Screen name="(routes)/notification/index" />
+        <Stack.Screen name="(routes)/room/[id]" />
+      </Stack>
+    </ThemeProvider>
+    )
+  }
 
   return (
     <StreamVideo client={client}>

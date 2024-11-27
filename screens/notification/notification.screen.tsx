@@ -255,7 +255,7 @@ export default function NotificationScreen() {
                       fontSize: fontSizes.FONT18,
                     }}
                   >
-                    Courses
+                    Judgments
                   </Text>
                 </TouchableOpacity>
 

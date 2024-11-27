@@ -1,6 +1,6 @@
 import { View, StyleSheet, Text} from 'react-native';
 import React, { useEffect, useState } from 'react';
-import { useLocalSearchParams} from 'expo-router';
+import { useLocalSearchParams, useRouter} from 'expo-router';
 import Spinner from 'react-native-loading-spinner-overlay';
 import {
   Call,
@@ -11,10 +11,11 @@ import {
 } from '@stream-io/video-react-native-sdk';
 
 const Page = () => {
+  const router = useRouter()
   const { id } = useLocalSearchParams<{ id: string }>();
   const [call, setCall] = useState<Call | null>(null);
   const client = useStreamVideoClient();
-
+  
   useEffect(() => {
     if (!client || call) return;
 
@@ -43,7 +44,9 @@ const Page = () => {
     <View style={{ flex: 1 }}>
       <StreamCall call={call}>
         <View style={styles.container}>
-          <CallContent/>
+          <CallContent
+            onHangupCallHandler={() => router.back()}
+          />
         </View>
       </StreamCall>
     </View>

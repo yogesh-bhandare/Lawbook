@@ -23,7 +23,7 @@ import { EvilIcons, Ionicons } from "@expo/vector-icons";
 
 export default function WelcomeHeader() {
   const { theme } = useTheme();
-  const { name } = useUserData();
+  const { firstName } = useUserData();
   const [notificationLength, setnotificationLength] = useState(0);
 
   return (
@@ -57,7 +57,7 @@ export default function WelcomeHeader() {
               fontFamily: "Poppins_600SemiBold",
             }}
           >
-            Hi {name?.split(" ")[0]},
+            Hi {firstName},
           </Text>
           <Text
             style={{
@@ -66,7 +66,7 @@ export default function WelcomeHeader() {
               fontFamily: "Poppins_400Regular",
             }}
           >
-            Let's start Learning
+            Let's start Practicing
           </Text>
         </View>
         <View style={{ flexDirection: "row" }}>
@@ -106,7 +106,7 @@ export default function WelcomeHeader() {
       </View>
       <View style={{ position: "relative" }}>
         <TextInput
-          placeholder="Search for Topics,Courses"
+          placeholder="Search for Judgments, Cases"
           style={[
             styles.input,
             {

@@ -82,7 +82,7 @@ export default function _layout() {
                 : false,
             headerTitle:
               route.name === "court/index"
-                ? "Practice"
+                ? "Moot Courtroom"
                 : route.name === "resources/index"
                 ? "Case Library"
                 : "",

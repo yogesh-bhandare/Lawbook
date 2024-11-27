@@ -9,7 +9,7 @@ import {
   Text,
   View,
 } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { useTheme } from "@/context/theme.context";
 import useUser from "@/hooks/fetch/useUser";
 import useUserData from "@/hooks/useUserData";
@@ -33,12 +33,43 @@ import * as SecureStore from "expo-secure-store";
 import { router } from "expo-router";
 import * as WebBrowser from "expo-web-browser";
 import { useAuth } from "@clerk/clerk-expo";
+// import * as ImagePicker from 'expo-image-picker';
 
 export default function ProfileScreen() {
   const { theme } = useTheme();
   const { user, loader } = useUser();
-  const { name, email, avatar } = useUserData();
+  const { name, firstName, lastName, email, avatar } = useUserData();
   const { signOut } = useAuth();
+  const [edit, setEdit] = useState(false);
+
+  // const onSaveUser = async () => {
+  //   try {
+  //     await user?.update({
+  //       firstName: firstName,
+  //       lastName: lastName,
+  //     });
+  //   } catch (error) {
+  //     console.log(error);
+  //   } finally {
+  //     setEdit(false);
+  //   }
+  // };
+
+  // const onCaptureImage = async () => {
+  //   let result = await ImagePicker.launchImageLibraryAsync({
+  //     mediaTypes: ImagePicker.MediaTypeOptions.Images,
+  //     allowsEditing: true,
+  //     quality: 0.75,
+  //     base64: true,
+  //   });
+
+  //   if (!result.canceled) {
+  //     const base64 = `data:image/png;base64,${result.assets[0].base64}`;
+  //     user?.setProfileImage({
+  //       file: base64,
+  //     });
+  //   }
+  // };
 
   const logoutHandler = async () => {
     try {
@@ -114,8 +145,8 @@ export default function ProfileScreen() {
             start={{ x: 0, y: 1 }}
             end={{ x: 1, y: 0 }}
           >
-            <Text style={styles.statNumber}>{user?.orders?.length}</Text>
-            <Text style={styles.statLabel}>Enrolled</Text>
+            <Text style={styles.statNumber}>0</Text>
+            <Text style={styles.statLabel}>Cases</Text>
           </LinearGradient>
           <LinearGradient
             style={styles.statBox}
@@ -124,7 +155,7 @@ export default function ProfileScreen() {
             end={{ x: 1, y: 0 }}
           >
             <Text style={styles.statNumber}>0</Text>
-            <Text style={styles.statLabel}>Certificates</Text>
+            <Text style={styles.statLabel}>Badges</Text>
           </LinearGradient>
         </View>
       </View>
@@ -169,7 +200,7 @@ export default function ProfileScreen() {
                   color: theme?.dark ? "#fff" : "#000",
                 }}
               >
-                Enrolled Courses
+                Constitution and Law
               </Text>
               <Text
                 style={{
@@ -180,7 +211,7 @@ export default function ProfileScreen() {
                   opacity: 0.6,
                 }}
               >
-                Explore your all enrolled courses
+                Understanding the Basics of Constitution
               </Text>
             </View>
           </View>
@@ -221,7 +252,7 @@ export default function ProfileScreen() {
                   color: theme?.dark ? "#fff" : "#000",
                 }}
               >
-                Course Leaderboard
+                Case Leaderboard
               </Text>
               <Text
                 style={{
