@@ -77,7 +77,7 @@ export default function MyTicketsScreen() {
               width: scale(220),
             }}
           >
-            Payment method is not working!
+            Video Chat is not working!
           </Text>
           <Text
             style={{

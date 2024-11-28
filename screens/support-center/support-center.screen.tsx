@@ -193,7 +193,7 @@ export default function SupportCenterScreen() {
             flexDirection: "row",
             gap: scale(10),
           }}
-          onPress={() => Linking.openURL("mailto:support@becodemy.com")}
+          onPress={() => Linking.openURL("mailto:yogeshbhandare.work@gmail.com")}
         >
           <IconThree />
           <View>

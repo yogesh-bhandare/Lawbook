@@ -80,10 +80,10 @@ export default function SettingsScreen() {
         style={{
           flexDirection: "row",
           alignItems: "center",
-          height: verticalScale(25),
+          height: verticalScale(45),
           backgroundColor: theme.dark ? "#131313" : "#fff",
           paddingHorizontal: scale(10),
-          paddingBottom: verticalScale(5),
+          paddingBottom: theme.dark ? verticalScale(5) : verticalScale(0),
           shadowColor: theme.dark ? "#fff" : "#000",
           shadowOpacity: 0.1,
           shadowOffset: { width: 0, height: 1 },

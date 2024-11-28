@@ -116,7 +116,7 @@ export default function NotificationScreen() {
           style={{
             flexDirection: "row",
             alignItems: "center",
-            height: theme.dark ? verticalScale(25) : verticalScale(25),
+            height: theme.dark ? verticalScale(45) : verticalScale(45),
             backgroundColor: theme.dark ? "#131313" : "#fff",
             paddingHorizontal: scale(8),
             paddingBottom: theme.dark ? verticalScale(5) : verticalScale(0),

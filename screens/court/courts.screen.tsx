@@ -37,8 +37,8 @@ const CourtScreen = () => {
   const [selectedJudge, setSelectedJudge] = useState("Peer");
   const [selectedLawyer, setSelectedLawyer] = useState("Peer");
   const [activeQuestion, setActiveQuestion] = useState(null);
-  const [activeTips, setActiveTips] = useState(false);
-  const [activeRules, setActiveRules] = useState(true);
+  const [activeTips, setActiveTips] = useState(true);
+  const [activeRules, setActiveRules] = useState(false);
 
   const onStartMeeting = () => {
     if (selectedJudge === "Peer" && selectedLawyer === "Peer") {

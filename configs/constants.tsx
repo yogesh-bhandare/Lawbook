@@ -155,18 +155,18 @@ export const AIRulesData = [
 export const bannerData = [
   {
     image:
-      "https://res.cloudinary.com/dkg6jv4l0/image/upload/v1729365053/WhatsApp_Image_2024-09-02_at_2.07.32_PM_kb1mwe.jpg",
-    url: "https://react-native.becodemy.com",
+      "https://img.freepik.com/free-vector/law-firm-concept-illustration_114360-8746.jpg?t=st=1732824304~exp=1732827904~hmac=0b283edf58e8184be2809feada8a2ee8beeb32f203bddeb49a0432ba98dcc492&w=1060",
+    url: "https://lawbook.com",
   },
   {
     image:
-      "https://res.cloudinary.com/dwp4syk3r/image/upload/v1713574008/WhatsApp_Image_2024-02-29_at_2.00.10_AM_zpk4qe.jpg",
-    url: "https://youtu.be/BrrwtCt7d-Y",
+      "https://img.freepik.com/free-vector/law-firm-concept-illustration_114360-8626.jpg?t=st=1732824370~exp=1732827970~hmac=45204c8ca61a51f9d2cea7366fea4f8f2cc73708562ca7236b25ea51b7a0fd30&w=1060",
+    url: "https://lawbook.com",
   },
   {
     image:
-      "https://res.cloudinary.com/dkg6jv4l0/image/upload/v1723424082/WhatsApp_Image_2024-08-09_at_5.00.52_AM_wzokd1.jpg",
-    url: "https://youtu.be/4aS7g8OYHbg",
+      "https://img.freepik.com/free-vector/flat-lawyers-day-background_23-2149250815.jpg?t=st=1732824424~exp=1732828024~hmac=c9ab3bae99e176a0298c1f7efa05fe8ce94e53db8aacecc58222dab918d8dc1b&w=1060",
+    url: "https://lawbook.com",
   },
 ];
 
@@ -235,27 +235,32 @@ export const NotificationsData = [
 export const FAQData = [
   {
     id: 1,
-    question: "Will I receive a certificate for each contest?",
+    question: "Can I participate in the moot court feature without any prior experience?",
     answer:
-      "Yes — each student who completes any course will receive a certificate of completion to acknowledge their proficiency. We encourage students to include these on their LinkedIn profiles and in their job applications!",
-  },
-  {
-    id: 2,
-    question: "Can I get source code of each course?",
-    answer:
-      "Yes - You will get source code of all courses when you will watch the course video.",
+      "Absolutely! The moot court feature is designed for all levels, whether you're a beginner or an experienced law student. It’s a great way to practice and build your skills.",
   },
   {
     id: 3,
-    question:
-      "Can I ask about anything related course or if my code dosen't work?",
+    question: "Can I use the AI judge feature offline?",
     answer:
-      "Yes, you can comment on every part of the videos in the course. We'll always try to reply to your comment and fix any issues you may have.",
+      "No, the AI judge feature requires an active internet connection as it utilizes advanced cloud-based processing to analyze and respond to your arguments.",
   },
   {
-    id: 4,
-    question: "Can I download any course videos?",
+    id: 5,
+    question: "Can I download case studies or materials from the app?",
     answer:
-      "For security reasons, course videos cannot be downloaded. However, you have lifetime access to each purchased course and can watch them anytime, anywhere with your account",
+      "For security and copyright reasons, materials cannot be downloaded directly. However, you can access all resources anytime within the app.",
+  },
+  {
+    id: 6,
+    question: "Is my progress tracked across different features?",
+    answer:
+      "Yes, your progress is automatically tracked across case studies, moot trials, and other activities. You can view your milestones and badges within your profile.",
+  },
+  {
+    id: 7,
+    question: "Can I collaborate with friends or peers in the app?",
+    answer:
+      "Yes, you can collaborate with peers by inviting them to participate in moot trials or group discussions within the app.",
   },
 ];

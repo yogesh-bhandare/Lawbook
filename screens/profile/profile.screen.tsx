@@ -490,7 +490,7 @@ export default function ProfileScreen() {
           }}
           onPress={async () =>
             await WebBrowser.openBrowserAsync(
-              "https://www.becodemy.com/privacy-policy"
+              "https://www.lawbook.com/privacy-policy"
             )
           }
         >
