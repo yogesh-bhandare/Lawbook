@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import {
   View,
-  StyleSheet,
-  ScrollView,
   Text,
   TouchableOpacity,
   TextInput,
@@ -11,16 +9,23 @@ import {
   Pressable,
   SafeAreaView,
   Alert,
+  FlatList,
 } from "react-native";
 import { useRouter } from "expo-router";
-import { Ionicons } from "@expo/vector-icons";
+import { AntDesign } from "@expo/vector-icons";
 import { useTheme } from "@/context/theme.context";
 import { scale, verticalScale } from "react-native-size-matters";
-import { fontSizes, IsHaveNotch, IsIPAD, windowWidth } from "@/themes/app.constant";
+import {
+  fontSizes,
+  IsHaveNotch,
+  IsIPAD,
+  windowWidth,
+} from "@/themes/app.constant";
 import IconOne from "@/assets/svgs/onboarding/icon-1";
 import IconThree from "@/assets/svgs/onboarding/icon-3";
 import { BlurView } from "expo-blur";
 import { generateSlug } from "random-word-slugs";
+import { AIRulesData, AITipsData } from "@/configs/constants";
 
 const CourtScreen = () => {
   const router = useRouter();
@@ -28,24 +33,27 @@ const CourtScreen = () => {
   const [startMeet, setStartMeet] = useState(false);
   const [joinMeet, setJoinMeet] = useState(false);
   const [loader, setLoader] = useState(false);
-  const [callId, setCallId] = useState('');
+  const [callId, setCallId] = useState("");
   const [selectedJudge, setSelectedJudge] = useState("Peer");
   const [selectedLawyer, setSelectedLawyer] = useState("Peer");
+  const [activeQuestion, setActiveQuestion] = useState(null);
+  const [activeTips, setActiveTips] = useState(false);
+  const [activeRules, setActiveRules] = useState(true);
 
   const onStartMeeting = () => {
     if (selectedJudge === "Peer" && selectedLawyer === "Peer") {
       const words = generateSlug(3, {
-        format: "lower", 
+        format: "lower",
         categories: {
-          noun: ["education", "profession", "place"], 
-          adjective: ["personality", "condition"], 
+          noun: ["education", "profession", "place"],
+          adjective: ["personality", "condition"],
         },
       });
-  
+
       const slug = words.split(" ").join("-");
-  
-      console.log(slug); 
-      router.push(`/(routes)/room/${slug}`); 
+
+      console.log(slug);
+      router.push(`/(routes)/room/${slug}`);
     } else {
       Alert.alert(
         "Feature Not Available",
@@ -63,9 +71,23 @@ const CourtScreen = () => {
     setTimeout(() => {
       setLoader(false);
       router.push(`/(routes)/room/${callId.trim()}`);
-      setCallId('');
+      setCallId("");
       setJoinMeet(false);
-    }, 1000); 
+    }, 1000);
+  };
+
+  const toggleQuestion = (id: any) => {
+    setActiveQuestion(activeQuestion === id ? null : id);
+  };
+
+  const toggleTips = () => {
+    setActiveTips(true);
+    setActiveRules(false);
+  };
+
+  const toggleRules = () => {
+    setActiveRules(true);
+    setActiveTips(false);
   };
 
   return (
@@ -223,7 +245,7 @@ const CourtScreen = () => {
                       style={{
                         flex: 1,
                         backgroundColor:
-                          selectedJudge === "AI" ? "#2467EC" : "#ccc",
+                          selectedJudge === "AI" ? "#2467EC" : "#3c43485c",
                         paddingVertical: verticalScale(8),
                         borderRadius: scale(8),
                         marginHorizontal: scale(5),
@@ -245,7 +267,7 @@ const CourtScreen = () => {
                       style={{
                         flex: 1,
                         backgroundColor:
-                          selectedJudge === "Peer" ? "#2467EC" : "#ccc",
+                          selectedJudge === "Peer" ? "#2467EC" : "#3c43485c",
                         paddingVertical: verticalScale(8),
                         borderRadius: scale(8),
                         marginHorizontal: scale(5),
@@ -288,7 +310,7 @@ const CourtScreen = () => {
                       style={{
                         flex: 1,
                         backgroundColor:
-                          selectedLawyer === "AI" ? "#2467EC" : "#ccc",
+                          selectedLawyer === "AI" ? "#2467EC" : "#3c43485c",
                         paddingVertical: verticalScale(8),
                         borderRadius: scale(8),
                         marginHorizontal: scale(5),
@@ -310,7 +332,7 @@ const CourtScreen = () => {
                       style={{
                         flex: 1,
                         backgroundColor:
-                          selectedLawyer === "Peer" ? "#2467EC" : "#ccc",
+                          selectedLawyer === "Peer" ? "#2467EC" : "#3c43485c",
                         paddingVertical: verticalScale(8),
                         borderRadius: scale(8),
                         marginHorizontal: scale(5),
@@ -458,10 +480,202 @@ const CourtScreen = () => {
         </Modal>
       )}
 
-      <ScrollView contentContainerStyle={{ paddingBottom: 20 }}></ScrollView>
+      <View
+        style={{
+          paddingVertical: verticalScale(20),
+          paddingHorizontal: scale(60),
+        }}
+      >
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <TouchableOpacity
+            style={{
+              flex: 1,
+              backgroundColor: activeTips ? "#2467EC" : "#3c43485c",
+              paddingVertical: verticalScale(8),
+              borderTopLeftRadius: scale(10), 
+              borderBottomLeftRadius: scale(10),
+
+            }}
+            onPress={toggleTips}
+          >
+            <Text
+              style={{
+                textAlign: "center",
+                color: "#FFF",
+                fontSize: fontSizes.FONT18,
+                fontFamily: "Poppins_500Medium",
+              }}
+            >
+              Tips
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={{
+              flex: 1,
+              backgroundColor: activeRules ? "#2467EC" : "#3c43485c",
+              paddingVertical: verticalScale(8),
+              borderTopRightRadius: scale(10), 
+              borderBottomRightRadius: scale(10),
+            }}
+            onPress={toggleRules}
+          >
+            <Text
+              style={{
+                textAlign: "center",
+                color: "#FFF",
+                fontSize: fontSizes.FONT18,
+                fontFamily: "Poppins_500Medium",
+              }}
+            >
+              Rules
+            </Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+
+      {activeTips && (
+        <View>
+          <FlatList
+            data={AITipsData}
+            renderItem={({ item }) => (
+              <View
+                key={item.id}
+                style={{
+                  backgroundColor: theme.dark ? "#3c43485c" : "#eaf3fb85",
+                  marginVertical: verticalScale(8),
+                  borderRadius: scale(10),
+                  paddingVertical: scale(8),
+                  paddingHorizontal: scale(10),
+                }}
+              >
+                <View
+                  style={{
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <Text
+                    style={{
+                      color: theme.dark ? "#fff" : "#000",
+                      fontSize: fontSizes.FONT20,
+                      fontFamily: "Poppins_500Medium",
+                      width: scale(260),
+                    }}
+                  >
+                    {item.question}
+                  </Text>
+                  <View style={{ paddingRight: scale(5) }}>
+                    <Pressable onPress={() => toggleQuestion(item.id)}>
+                      {activeQuestion === item.id ? (
+                        <AntDesign
+                          name="up"
+                          size={scale(20)}
+                          color={theme.dark ? "#fff" : "#000"}
+                        />
+                      ) : (
+                        <AntDesign
+                          name="down"
+                          size={scale(20)}
+                          color={theme.dark ? "#fff" : "#000"}
+                        />
+                      )}
+                    </Pressable>
+                  </View>
+                </View>
+                {activeQuestion === item.id && (
+                  <Text
+                    style={{
+                      color: theme.dark ? "#fff" : "#000",
+                      fontSize: fontSizes.FONT18,
+                      fontFamily: "Poppins_400Regular",
+                      width: scale(260),
+                      paddingTop: verticalScale(5),
+                    }}
+                  >
+                    {item.answer}
+                  </Text>
+                )}
+              </View>
+            )}
+          />
+        </View>
+      )}
+
+      {activeRules && (
+        <View>
+          <FlatList
+            data={AIRulesData}
+            renderItem={({ item }) => (
+              <View
+                key={item.id}
+                style={{
+                  backgroundColor: theme.dark ? "#3c43485c" : "#eaf3fb85",
+                  marginVertical: verticalScale(8),
+                  borderRadius: scale(10),
+                  paddingVertical: scale(8),
+                  paddingHorizontal: scale(10),
+                }}
+              >
+                <View
+                  style={{
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <Text
+                    style={{
+                      color: theme.dark ? "#fff" : "#000",
+                      fontSize: fontSizes.FONT20,
+                      fontFamily: "Poppins_500Medium",
+                      width: scale(260),
+                    }}
+                  >
+                    {item.question}
+                  </Text>
+                  <View style={{ paddingRight: scale(5) }}>
+                    <Pressable onPress={() => toggleQuestion(item.id)}>
+                      {activeQuestion === item.id ? (
+                        <AntDesign
+                          name="up"
+                          size={scale(20)}
+                          color={theme.dark ? "#fff" : "#000"}
+                        />
+                      ) : (
+                        <AntDesign
+                          name="down"
+                          size={scale(20)}
+                          color={theme.dark ? "#fff" : "#000"}
+                        />
+                      )}
+                    </Pressable>
+                  </View>
+                </View>
+                {activeQuestion === item.id && (
+                  <Text
+                    style={{
+                      color: theme.dark ? "#fff" : "#000",
+                      fontSize: fontSizes.FONT18,
+                      fontFamily: "Poppins_400Regular",
+                      width: scale(260),
+                      paddingTop: verticalScale(5),
+                    }}
+                  >
+                    {item.answer}
+                  </Text>
+                )}
+              </View>
+            )}
+          />
+        </View>
+      )}
     </SafeAreaView>
   );
 };
-
 
 export default CourtScreen;

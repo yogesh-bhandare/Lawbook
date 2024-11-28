@@ -54,26 +54,6 @@ export default function HomeScreen() {
                 }}
               />
             </View>
-            <View style={{ flexDirection: "row", alignItems: "center" }}>
-              <View
-                style={{
-                  backgroundColor: "#12BB70",
-                  width: windowWidth(15),
-                  height: windowWidth(15),
-                  borderRadius: 100,
-                }}
-              />
-              <Text
-                style={{
-                  fontFamily: "Poppins_400Regular",
-                  fontSize: fontSizes.FONT18,
-                  paddingLeft: windowWidth(5),
-                  color: theme.dark ? "#fff" : "#000",
-                }}
-              >
-                our comprehensive practice based learning
-              </Text>
-            </View>
           </View>
           {loading ? (
             <>

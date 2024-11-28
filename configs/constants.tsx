@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { IsIPAD } from "@/themes/app.constant";
 import { Dimensions, Image } from "react-native";
 import { scale, verticalScale } from "react-native-size-matters";
@@ -7,6 +8,29 @@ import One from "@/assets/images/onboarding/1.png";
 import Two from "@/assets/images/onboarding/2.png";
 //@ts-ignore
 import Three from "@/assets/images/onboarding/3.png";
+import api from "@/constants/api";
+
+export const useJudgments = () => {
+  const [judgments, setJudgments] = useState("");
+
+  useEffect(() => {
+    const fetchJudgments = async () => {
+      try {
+        const response = await api.get("/judgments/l1/"); 
+        if (response?.data) {
+          setJudgments(response.data);
+        }
+      } catch (error) {
+        console.error("Error fetching judgments:", error);
+      }
+    };
+
+    fetchJudgments();
+  }, []);
+
+  return { judgments, setJudgments };
+};
+
 
 export const onBoardingSlides: onBoardingSlidesTypes[] = [
   {
@@ -72,6 +96,60 @@ export const PREV = WIDTH;
 export const NEXT = 0;
 export const LEFT_SNAP_POINTS = [MARGIN_WIDTH, PREV];
 export const RIGHT_SNAP_POINTS = [NEXT, WIDTH - MARGIN_WIDTH];
+
+export const AITipsData = [
+  {
+    id: 1,
+    question: "How can I use the AI judge to improve my argument?",
+    answer:
+      "You can leverage the AI judge's insights to guide your argument preparation and refine your approach during the session.",
+  },
+  {
+    id: 2,
+    question: "Can I ask the AI judge clarifying questions?",
+    answer:
+      "Yes, feel free to ask the AI judge for clarification if you’re unsure about a ruling or response. This will help you better understand the case.",
+  },
+  {
+    id: 3,
+    question: "How should I handle feedback from the AI judge?",
+    answer:
+      "The AI judge may provide feedback on your performance. Use this feedback to refine your skills and improve future performances.",
+  },
+  {
+    id: 4,
+    question: "What should I know about the limitations of the AI judge?",
+    answer:
+      "The AI judge follows programmed logic and may not account for nuances like human emotion or creative legal arguments. Keep this in mind when presenting your case.",
+  },
+];
+
+export const AIRulesData = [
+  {
+    id: 1,
+    question: "How should I interact with the AI judge?",
+    answer:
+      "Respect the AI judge's decisions and responses as you would a human judge, even if you disagree with its ruling.",
+  },
+  {
+    id: 2,
+    question: "How can I ensure the AI judge understands my argument?",
+    answer:
+      "Provide clear and structured inputs when presenting arguments or evidence, so the AI can process them accurately.",
+  },
+  {
+    id: 3,
+    question: "Can I manipulate the AI judge?",
+    answer:
+      "No, you should not attempt to manipulate the AI judge with irrelevant or misleading information. Always present honest and relevant data.",
+  },
+  {
+    id: 4,
+    question: "Should I follow the AI judge’s procedural instructions?",
+    answer:
+      "Yes, always adhere to the procedural instructions from the AI judge, including time limits and evidence submission protocols.",
+  },
+];
 
 // banner data
 export const bannerData = [

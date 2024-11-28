@@ -1,7 +1,6 @@
 import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { useTheme } from "@/context/theme.context";
-import * as WebBrowser from "expo-web-browser";
 import {
   fontSizes,
   SCREEN_WIDTH,
@@ -13,16 +12,14 @@ export default function SourceCodeCard({
   item,
 }: {
   item: {
-    url: string;
-    thumbnail: string;
+    id: Number;
+    date_added: string; 
+    img_url: string; 
     title: string;
   };
 }) {
   const { theme } = useTheme();
 
-  const handlePress = async () => {
-    await WebBrowser.openBrowserAsync(item.url);
-  };
 
   return (
     <Pressable
@@ -30,36 +27,33 @@ export default function SourceCodeCard({
         paddingHorizontal: windowWidth(20),
         paddingVertical: windowHeight(7),
       }}
-      onPress={handlePress}
     >
       <View
         style={[
           styles.card,
           {
             backgroundColor: theme.dark ? "#3c43485c" : "#eaf3fb85",
+            flexDirection: "row",
+            gap: windowWidth(15),
+            alignItems: "center",
           },
         ]}
       >
         <Image
           source={{
-            uri: item?.thumbnail,
+            uri: item?.img_url,
           }}
           style={{
-            width: SCREEN_WIDTH - 52,
-            height: (SCREEN_WIDTH - 40) * 0.5625,
-            alignSelf: "center",
-            borderRadius: windowWidth(5),
+            width: windowWidth(80),
+            height: windowWidth(80),
+            borderRadius: windowWidth(40),
+            backgroundColor: theme.dark ? "#333" : "#ddd",
           }}
         />
-        <View
-          style={{
-            paddingHorizontal: windowWidth(15),
-            paddingBottom: windowHeight(5),
-          }}
-        >
+        {/* Text Section */}
+        <View style={{ flex: 1 }}>
           <Text
             style={{
-              paddingTop: windowHeight(5),
               fontFamily: "Poppins_400Regular",
               fontSize: fontSizes.FONT18,
               color: theme.dark ? "#fff" : "#3E3B54",
@@ -67,13 +61,17 @@ export default function SourceCodeCard({
           >
             {item.title}
           </Text>
-          <View
+          <Text
             style={{
-              paddingVertical: windowHeight(5),
-              flexDirection: "row",
-              justifyContent: "space-between",
+              fontFamily: "Poppins_400Regular",
+              fontSize: fontSizes.FONT14,
+              color: theme.dark ? "#aaa" : "#6b6b6b",
+              paddingTop: windowHeight(5),
             }}
-          />
+            numberOfLines={2}
+          >
+           {item.date_added}
+          </Text>
         </View>
       </View>
     </Pressable>
@@ -86,5 +84,6 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowColor: "#40E0D0",
     shadowRadius: 5,
+    padding: windowWidth(15),
   },
 });

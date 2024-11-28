@@ -18,12 +18,6 @@ export default function SkeltonLoader() {
       animate={{ backgroundColor: theme.dark ? 'transparent' : "#fff" }}
     >
       {/* <Spacer /> */}
-      <Skeleton
-        width={windowWidth(440)}
-        height={windowHeight(60)}
-        colorMode={theme.dark ? "dark" : "light"}
-      />
-      <Spacer />
       <View style={{ flexDirection: "row", gap: windowWidth(15) }}>
         <Skeleton
           colorMode={theme.dark ? "dark" : "light"}
