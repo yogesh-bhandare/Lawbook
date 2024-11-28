@@ -63,14 +63,6 @@ export default function _layout() {
     <ClerkProvider publishableKey={publishableKey} tokenCache={tokenCache}>
       <ClerkLoaded>
         <GestureHandlerRootView>
-        {/* <ThemeProvider>
-        <Stack screenOptions={{ headerShown: false }}>
-          <Stack.Screen name="index" />
-          <Stack.Screen name="(routes)/onboarding/index" />
-          <Stack.Screen name="(routes)/notification/index" />
-          <Stack.Screen name="(routes)/room/[id]" />
-        </Stack>
-      </ThemeProvider> */}
         <ClerkApp/>
         </GestureHandlerRootView>
       </ClerkLoaded>
