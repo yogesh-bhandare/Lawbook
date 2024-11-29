@@ -61,6 +61,7 @@ function ClerkApp() {
           <Stack.Screen name="(routes)/onboarding/index" />
           <Stack.Screen name="(routes)/notification/index" />
           <Stack.Screen name="(routes)/room/[id]" />
+          <Stack.Screen name="(routes)/resources/[id]" />
         </Stack>
       </ThemeProvider>
     );
@@ -74,6 +75,7 @@ function ClerkApp() {
           <Stack.Screen name="(routes)/onboarding/index" />
           <Stack.Screen name="(routes)/notification/index" />
           <Stack.Screen name="(routes)/room/[id]" />
+          <Stack.Screen name="(routes)/resources/[id]" />
         </Stack>
       </ThemeProvider>
     </StreamVideo>

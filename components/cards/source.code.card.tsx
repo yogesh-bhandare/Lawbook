@@ -7,21 +7,29 @@ import {
   windowHeight,
   windowWidth,
 } from "@/themes/app.constant";
+import { Link } from 'expo-router';
 
 export default function SourceCodeCard({
   item,
 }: {
   item: {
-    id: Number;
-    date_added: string; 
-    img_url: string; 
+    id: number;
+    date_added: string;
+    img_url: string;
     title: string;
+    summary?: string; 
+    category?: string; 
   };
 }) {
   const { theme } = useTheme();
-
-
   return (
+    <Link 
+      href={{
+        pathname: "/(routes)/resources/[id]",
+        params: { id: item.id.toString() }
+      }} 
+      asChild
+    >
     <Pressable
       style={{
         paddingHorizontal: windowWidth(20),
@@ -58,6 +66,7 @@ export default function SourceCodeCard({
               fontSize: fontSizes.FONT18,
               color: theme.dark ? "#fff" : "#3E3B54",
             }}
+            numberOfLines={2}
           >
             {item.title}
           </Text>
@@ -70,11 +79,24 @@ export default function SourceCodeCard({
             }}
             numberOfLines={2}
           >
-           {item.date_added}
+            {item.summary || item.date_added}
           </Text>
+          {item.category && (
+            <Text
+              style={{
+                fontFamily: "Poppins_400Regular",
+                fontSize: fontSizes.FONT12,
+                color: theme.dark ? "#888" : "#888",
+                paddingTop: windowHeight(3),
+              }}
+            >
+              Category: {item.category}
+            </Text>
+          )}
         </View>
       </View>
     </Pressable>
+    </Link>
   );
 }
 

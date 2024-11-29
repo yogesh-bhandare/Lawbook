@@ -6,16 +6,15 @@ import {
 import React from "react";
 import { useTheme } from "@/context/theme.context";
 import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs";
-import { useJudgments } from "@/configs/constants";
 import SourceCodeCard from "@/components/cards/source.code.card";
-import {  verticalScale } from "react-native-size-matters";
+import { verticalScale } from "react-native-size-matters";
+import useCases from "@/hooks/fetch/useCases";
 
 export default function ResourcesScreen() {
   const { theme } = useTheme();
   const bottomTabBarHeight = useBottomTabBarHeight();
-  const { judgments } = useJudgments()
-  // console.log(judgments)
-
+  const { cases } = useCases(); 
+  
   return (
     <SafeAreaView
       style={{
@@ -25,17 +24,15 @@ export default function ResourcesScreen() {
     >
         <View style={{ paddingBottom: bottomTabBarHeight - 20 }}>
           <FlatList
-            data={judgments}
+            data={cases} 
             renderItem={({ item }) => <SourceCodeCard item={item} />}
             showsVerticalScrollIndicator={false}
             style={{
               paddingTop: verticalScale(10),
             }}
+            keyExtractor={(item) => item.id.toString()}
           />
         </View>
     </SafeAreaView>
   );
 }
-
-
-
