@@ -1,6 +1,6 @@
 import { View, StyleSheet, Text} from 'react-native';
 import React, { useEffect, useState } from 'react';
-import { useLocalSearchParams, useRouter} from 'expo-router';
+import { router, useLocalSearchParams} from 'expo-router';
 import Spinner from 'react-native-loading-spinner-overlay';
 import {
   Call,
@@ -11,7 +11,6 @@ import {
 } from '@stream-io/video-react-native-sdk';
 
 const Page = () => {
-  const router = useRouter()
   const { id } = useLocalSearchParams<{ id: string }>();
   const [call, setCall] = useState<Call | null>(null);
   const client = useStreamVideoClient();
