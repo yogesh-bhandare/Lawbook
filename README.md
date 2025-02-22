@@ -1,4 +1,6 @@
-# Lawbook Redefining Legal Practice for Students
+# Lawbook: Redefining Legal Practice for Students
+
+Check out my backend work at [Lawbook Backend API](https://github.com/yogesh-bhandare/lawbook-backend-api) – built by a passionate backend engineer!
 
 ### Overview
 
@@ -17,23 +19,17 @@ Preparing for trials and judgments is often limited to theoretical knowledge or 
    - **Progress Tracking:** Monitor skill development with milestone-based badges and detailed performance analytics.
 
 ### Tech Stack
-- [Django Backend](https://github.com/yogesh-bhandare/lawbook-backend-api) (Python)
+- **[Lawbook Backend API](https://github.com/yogesh-bhandare/lawbook-backend-api)** (FastAPI, Python)
+   - Powers AI summarization, case library, and data storage with a robust backend.
 
-   - **Django:** Powers the backend logic for user management, case library access, and progress tracking.
-   - **AI Summarization:** Utilizes Llama 3 for generating concise, accurate summaries of legal cases.
-   - **Web Scraping:** Employs Selenium to gather the latest case studies and legal content from trusted online sources.
-   - **Storage:** Integrates with AWS S3 for secure storage of user files and case documents.
+- **React Native Frontend**
+   - **[React Native](https://reactnative.dev/)** - Delivers a seamless, cross-platform experience for Android and iOS devices.
+   - **[Stream SDK](https://getstream.io/)** - Powers the virtual courtroom’s video and chat functionality for smooth interactions.
+   - **[Reanimated](https://docs.swmansion.com/react-native-reanimated/)** - Built for a modern, animated, and user-friendly interface.
+   - **[Clerk](https://clerk.dev/)** - OAuth integration for secure, user-friendly logins.
 
-- React Native Frontend
-
-   - **React Native:** Delivers a seamless, cross-platform experience for Android and iOS devices.
-   - **Stream SDK:** Powers the virtual courtroom’s video and chat functionality for smooth interactions.
-   - **UI Design:** Built with Reanimated for a modern, animated, and user-friendly interface.
-   - **OAuth Integration:** Streamlines authentication with Clerk, enabling secure, user-friendly logins.
-
- - Additional Features
-
-   - **PostgreSQL Database (Neon DB):** Reliable and efficient database management for user data and case storage.
+- **Additional Features**
+   - **[PostgreSQL (Neon DB)](https://neon.tech/)** - Reliable database management for user data and case storage.
    - **CI/CD Pipeline:** Uses Docker and GitHub Actions for continuous integration and deployment, ensuring quick updates and scalability.
 
 ## Running App
@@ -42,4 +38,4 @@ You can download and use the Lawbook app to explore its features and functionali
 
 [Download Lawbook App](https://lawbook-apk.s3.us-east-1.amazonaws.com/download/Lawbook.apk)
 
-![Lawbook Mockup](assets/images/mockup-2.png) 
+![Lawbook Mockup](assets/images/mockup-2.png)
