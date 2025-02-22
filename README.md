@@ -1,6 +1,6 @@
 # Lawbook: Redefining Legal Practice for Students
 
-Check out my backend work at [Lawbook Backend API](https://github.com/yogesh-bhandare/lawbook-backend-api) – built by a passionate backend engineer!
+Check out my backend work at [Lawbook Backend API](https://github.com/yogesh-bhandare/lawbook-api) – built by a passionate backend engineer!
 
 ### Overview
 
